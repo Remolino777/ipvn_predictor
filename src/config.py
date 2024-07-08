@@ -20,5 +20,5 @@ except:
 FEATURE_GROUP_NAME = 'features_target_monthly_bogota'
 FEATURE_GROUP_VERSION = 1
 FEATURE_VIEW_NAME = 'features_target_monthly_bogota'
-FEATURE_VIEW_VERSION = 1
+FEATURE_VIEW_VERSION = 2
 print
