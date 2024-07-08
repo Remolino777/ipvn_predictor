@@ -1,0 +1,6 @@
+{
+    "terminal.integrated.commandsToSkipShell": [
+        "\"python.analysis.extraPaths\": [\"./src\"]"
+    ],
+    
+  }
