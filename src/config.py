@@ -18,7 +18,12 @@ except:
     raise Exception('Create an environment file on the project root with the HOPSWORKS_API_KEY')
 
 FEATURE_GROUP_NAME = 'features_target_monthly_bogota'
+FEATURE_GROUP_NAME_TS = 'time_series_24_months_bogota'
 FEATURE_GROUP_VERSION = 1
 FEATURE_VIEW_NAME = 'features_target_monthly_bogota'
+FEATURE_VIEW_NAME_TS = 'time_series_24_months_bogota'
 FEATURE_VIEW_VERSION = 2
+
+MODEL_NAME = 'monthly_ipvn_bogota'
+MODEL_VERSION= 1
 print

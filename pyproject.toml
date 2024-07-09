@@ -20,6 +20,8 @@ scikit-learn = "^1.5.1"
 python-dotenv = "^1.0.1"
 hsfs = "^3.7.0"
 hopsworks = "^3.7.0"
+streamlit = "^1.36.0"
+plotly-express = "^0.4.1"
 
 
 [build-system]

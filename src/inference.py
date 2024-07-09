@@ -20,26 +20,49 @@ def get_feature_store() -> FeatureStore:
 def get_model_predictions(model, features:pd.DataFrame) -> float:
     
     predictions = model.predict(features)
-    
+    print(predictions)
     return predictions
 
-def load_batch_features_from_store() -> pd.DataFrame:
+# def load_batch_features_from_store() -> pd.DataFrame:
+    
+#     fs = get_feature_store()
+    
+#     #Get feature view
+#     feature_view = fs.get_feature_view(
+#     name=config.FEATURE_VIEW_NAME,
+#     version= config.FEATURE_GROUP_VERSION
+#     )
+#     ft_data, _ = feature_view.training_data(
+#     description= 'month_features_target_bogota'
+#     )
+#     # obtain the las 11 values 
+#     ft = ft_data.tail(1)
+#     ft.drop('month_1', axis=1, inplace=True)
+
+#     return ft_data
+
+def load_batch_time_series_from_store() -> pd.DataFrame:
     
     fs = get_feature_store()
     
     #Get feature view
     feature_view = fs.get_feature_view(
-    name=config.FEATURE_VIEW_NAME,
-    version= config.FEATURE_GROUP_VERSION
+    name=config.FEATURE_VIEW_NAME_TS,
+    version= config.FEATURE_VIEW_VERSION
     )
-    ft_data, _ = feature_view.training_data(
-    description= 'month_features_target_bogota'
+    ts_data, _ = feature_view.training_data(
+    description= 'monthly_time_serie_data_bogota'
     )
+    df_sorted = ts_data.sort_values(by='fecha')
     # obtain the las 11 values 
-    ft_data = ft_data.tail()
-    ft_data.drop('month_1', axis=1, inplace=True)
+    ts = df_sorted.tail(12)
+    #print(ts)
+    return ts
 
-    return ft_data
+def transform_ts_to_training_data(df) -> pd.DataFrame:
+    df.set_index('fecha', inplace=True)
+    df_transposed = df.T
+    return df_transposed
 
 def load_model_from_registry():
     import joblib
@@ -55,5 +78,5 @@ def load_model_from_registry():
     )
     
     model_dir = model.download()
-    model = joblib.load(Path(model_dir) / 'model.pkl')
+    model = joblib.load(Path(model_dir) / 'ml_bogota.pkl')
     return model
