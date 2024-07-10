@@ -24,7 +24,7 @@ FEATURE_GROUP_NAME_PREDICTIONS = 'predictions'
 FEATURE_VIEW_NAME = 'features_target_monthly_bogota'
 FEATURE_VIEW_NAME_TS = 'time_series_24_months_bogota'
 FEATURE_VIEW_NAME_PREDICTIONS = 'predictions_bogota'
-FEATURE_VIEW_VERSION = 2
+FEATURE_VIEW_VERSION = 1
 
 
 MODEL_NAME = 'monthly_ipvn_bogota'

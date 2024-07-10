@@ -2,8 +2,8 @@ name: monthly-ipvn-time-series-pipeline
 
 on:
   schedule:
-    - cron: '00 15 * * *'
-
+    - cron: '40 15 * * *'
+  workflow_dispatch:
 jobs:
 
   feature_pipeline:
