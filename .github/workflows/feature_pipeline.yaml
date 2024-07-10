@@ -2,11 +2,19 @@ name: monthly-ipvn-time-series-pipeline
 
 on:
   schedule:
-    - cron: '40 15 * * *'
+  - cron: '05 16 * * *'
   workflow_dispatch:
+
+env:
+  PYTHON_VERSION: 3.9
+  POETRY_VERSION: 1.7.0
+  POETRY_URL: https://install.python-poetry.org
+
+
+
 jobs:
 
-  feature_pipeline:
+  monthly-ipvn-time-series-pipeline:
     runs-on: ubuntu-latest
 
     steps:
