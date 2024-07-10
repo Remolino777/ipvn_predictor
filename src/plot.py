@@ -69,3 +69,31 @@ def plot_ts(
     )
 
     fig.show()
+    
+def plot_x(df:pd.DataFrame, df2:pd.DataFrame) ->None:
+    import pandas as pd
+    import plotly.express as px
+    import streamlit as st
+    
+    fig = px.line(df, 
+                  x=df.index, 
+                  y='bogota', 
+                  title=f'Gráfica Indices de Precios de la Vivienda Nueva en Bogotá  mas Predicciones', 
+                  markers=True,
+                  color_discrete_sequence=['blue'])
+
+    # Agregar la predicción como una 'x'
+    fig.add_scatter(x=df2['fecha'], y=df2['prediccion'], mode='markers', marker=dict(symbol='x', size=10, color='red'), name='Predicción')
+
+    fig.update_layout(height=400,
+                      plot_bgcolor='lightgray',  # Fondo de la gráfica
+                      xaxis=dict(
+                            showgrid=True,  # Mostrar cuadrícula en el eje x
+                            gridcolor='white'  # Color de la cuadrícula
+                        ),
+                      yaxis=dict(
+                            showgrid=True,  # Mostrar cuadrícula en el eje y
+                            gridcolor='white'  # Color de la cuadrícula
+                        )
+                      )
+    st.plotly_chart(fig)   
