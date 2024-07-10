@@ -1,11 +1,8 @@
-name: monthly-ipvn
+name: monthly-ipvn-time-series-pipeline
 
-# on:
-#   schedule:
-#    -cron: '* * * 10 *'
 on:
   schedule:
-    - cron: '05 14 10 * *'
+    - cron: '30 14 * * *'
 
 jobs:
 
