@@ -108,11 +108,12 @@ def load_prediction_registry(df: pd.DataFrame):
 def download_prediction_registry_from_store() -> pd.DataFrame:
     
     fs = get_feature_store()
+    last_view_version = fs.get_feature_view(name=config.FEATURE_VIEW_NAME_PREDICTIONS).version
     
     #Get feature view
     feature_view = fs.get_feature_view(
     name=config.FEATURE_VIEW_NAME_PREDICTIONS,
-    version= config.FEATURE_VIEW_VERSION
+    version= last_view_version
     )
     data, _ = feature_view.training_data(
     description= 'monthly_predictions_bogota'
