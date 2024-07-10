@@ -1,9 +1,12 @@
 name: monthly-ipvn
 
+# on:
+#   schedule:
+#    -cron: '* * * 10 *'
 on:
   schedule:
-   -cron: '* * * 10 *'
-
+    - cron: '15 13 10 * *'
+    
 jobs:
 
   feature_pipeline:
