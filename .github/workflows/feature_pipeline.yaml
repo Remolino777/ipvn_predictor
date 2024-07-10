@@ -5,7 +5,7 @@ name: monthly-ipvn
 #    -cron: '* * * 10 *'
 on:
   schedule:
-    - cron: '30 13 10 * *'
+    - cron: '05 14 10 * *'
 
 jobs:
 
