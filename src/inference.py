@@ -90,7 +90,7 @@ def load_prediction_registry(df: pd.DataFrame):
         
         feature_store.create_feature_view(
             name=config.FEATURE_VIEW_NAME_PREDICTIONS,
-            version=None,
+            version=config.FEATURE_VIEW_VERSION,
             query=feature_group.select_all()
         )
         print(f"Feature View '{config.FEATURE_VIEW_NAME_PREDICTIONS}' versión '{config.FEATURE_VIEW_VERSION}' creado exitosamente.")
@@ -99,6 +99,9 @@ def load_prediction_registry(df: pd.DataFrame):
         print(f"Error al crear o actualizar Feature View '{config.FEATURE_VIEW_NAME_PREDICTIONS}' versión '{config.FEATURE_VIEW_VERSION}': {str(e)}")
         
 def download_prediction_registry_from_store() -> pd.DataFrame:
+    import pandas as pd
+    import hopsworks
+    import src.config as config
     
     fs = get_feature_store()
     
@@ -106,7 +109,7 @@ def download_prediction_registry_from_store() -> pd.DataFrame:
     #Get feature view
     feature_view = fs.get_feature_view(
     name=config.FEATURE_VIEW_NAME_PREDICTIONS,
-    version= 2
+    version= config.FEATURE_VIEW_VERSION
     )
     data, _ = feature_view.training_data(
     description= 'monthly_predictions_bogota'
