@@ -97,7 +97,7 @@ def load_prediction_registry(df: pd.DataFrame):
         # Crear el nuevo Feature View
         feature_store.create_feature_view(
             name=config.FEATURE_VIEW_NAME_PREDICTIONS,
-            version=config.FEATURE_VIEW_VERSION,
+            version=None,
             query=feature_group.select_all()
         )
         print(f"Feature View '{config.FEATURE_VIEW_NAME_PREDICTIONS}' versión '{config.FEATURE_VIEW_VERSION}' creado exitosamente.")
