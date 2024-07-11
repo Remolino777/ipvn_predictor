@@ -99,9 +99,6 @@ def load_prediction_registry(df: pd.DataFrame):
         print(f"Error al crear o actualizar Feature View '{config.FEATURE_VIEW_NAME_PREDICTIONS}' versión '{config.FEATURE_VIEW_VERSION}': {str(e)}")
         
 def download_prediction_registry_from_store() -> pd.DataFrame:
-    import pandas as pd
-    import hopsworks
-    import src.config as config
     
     fs = get_feature_store()
     
