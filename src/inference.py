@@ -65,6 +65,7 @@ def load_model_from_registry():
     return model
 
 def load_prediction_registry(df: pd.DataFrame):
+    import pandas as pd
     import hopsworks
     import src.config as config
     
@@ -86,15 +87,7 @@ def load_prediction_registry(df: pd.DataFrame):
     feature_group.insert(df, write_options={'wait_for_job':False})
     
     try:
-        # Intentar obtener el Feature View existente
-        feature_view = feature_store.get_feature_view(name=config.FEATURE_VIEW_NAME_PREDICTIONS, version=config.FEATURE_VIEW_VERSION)
         
-        # Si el Feature View existe, eliminarlo para sobrescribirlo
-        if feature_view:
-            feature_store.delete_feature_view(name=config.FEATURE_VIEW_NAME_PREDICTIONS, version=config.FEATURE_VIEW_VERSION)
-            print(f"Feature View '{config.FEATURE_VIEW_NAME_PREDICTIONS}' versión '{config.FEATURE_VIEW_VERSION}' eliminado correctamente.")
-        
-        # Crear el nuevo Feature View
         feature_store.create_feature_view(
             name=config.FEATURE_VIEW_NAME_PREDICTIONS,
             version=None,
@@ -113,7 +106,7 @@ def download_prediction_registry_from_store() -> pd.DataFrame:
     #Get feature view
     feature_view = fs.get_feature_view(
     name=config.FEATURE_VIEW_NAME_PREDICTIONS,
-    version= None
+    version= 2
     )
     data, _ = feature_view.training_data(
     description= 'monthly_predictions_bogota'
